@@ -683,34 +683,122 @@
       color: var(--ink-muted);
     }
 
-    /* Contact & Footer */
+    /* Contact & Form */
     .contact-box {
       padding: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2rem 2.75rem;
+      align-items: start;
+    }
+
+    @media (min-width: 780px) {
+      .contact-box {
+        grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      }
     }
 
     .contact-copy h2 {
       font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.7rem);
-      margin-block-end: 0.45rem;
+      margin-block-end: 0.55rem;
     }
 
     .contact-copy p {
       color: var(--ink-secondary);
-      max-inline-size: 48ch;
+      max-inline-size: 46ch;
       font-size: 0.95rem;
+      margin-block-end: 1.35rem;
     }
 
     .contact-links {
       display: flex;
       flex-wrap: wrap;
       gap: 0.65rem;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1.1rem;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .form-field label {
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .req-mark {
+      color: var(--accent);
+    }
+
+    .form-field input,
+    .form-field textarea {
+      font: inherit;
+      font-size: max(1rem, 1em);
+      line-height: 1.5;
+      color: var(--ink);
+      background-color: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding-block: 0.65rem;
+      padding-inline: 0.85rem;
+      min-block-size: 48px;
+      inline-size: 100%;
+      transition: border-color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .form-field textarea {
+      min-block-size: 120px;
+      resize: vertical;
+    }
+
+    .form-field input:focus-visible,
+    .form-field textarea:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      background-color: var(--surface);
+    }
+
+    .form-field input:user-invalid,
+    .form-field textarea:user-invalid,
+    .form-field [aria-invalid="true"] {
+      border-color: #b91c1c;
+    }
+
+    .field-error {
+      font-size: 0.8rem;
+      color: #b91c1c;
+      min-block-size: 1em;
+    }
+
+    .form-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1rem;
+    }
+
+    .form-status {
+      font-size: 0.88rem;
+      color: var(--ink-secondary);
+    }
+
+    .form-status.is-success {
+      color: #15803d;
+      font-weight: 500;
+    }
+
+    .form-status.is-error {
+      color: #b91c1c;
     }
 
     .site-footer {
@@ -1189,15 +1277,44 @@
       <div class="container">
         <div class="contact-box">
           <div class="contact-copy">
-            <h2>Let&rsquo;s work together</h2>
-            <p>Open to software engineering, Python development, test automation, and cloud-native roles. Reach out directly anytime.</p>
+            <h2 id="contactHeading">Send a message</h2>
+            <p>Have a question, project idea, or role in mind? Send a message directly to my inbox or reach out via the links below.</p>
+            <div class="contact-links">
+              <a href="mailto:rahulbomnalli@gmail.com" class="btn">rahulbomnalli@gmail.com</a>
+              <a href="tel:+919731651176" class="btn">+91 9731651176</a>
+              <a href="https://linkedin.com/in/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
+              <a href="https://github.com/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">GitHub</a>
+            </div>
           </div>
-          <div class="contact-links">
-            <a href="mailto:rahulbomnalli@gmail.com" class="btn btn-primary">rahulbomnalli@gmail.com</a>
-            <a href="tel:+919731651176" class="btn">+91 9731651176</a>
-            <a href="https://linkedin.com/in/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
-            <a href="https://github.com/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">GitHub</a>
-          </div>
+
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/rahulbomnalli@gmail.com" method="POST" aria-labelledby="contactHeading" novalidate>
+            <input type="hidden" name="_subject" value="New message from rahulbomnalli.github.io">
+            <input type="hidden" name="_template" value="table">
+            <input type="text" name="_honey" tabindex="-1" aria-hidden="true" autocomplete="off" style="position:absolute;inset-inline-start:-9999px;">
+
+            <div class="form-field">
+              <label for="senderName">Your name <span class="req-mark" aria-hidden="true">*</span></label>
+              <input type="text" id="senderName" name="name" autocomplete="name" enterkeyhint="next" required minlength="2" aria-describedby="nameError">
+              <span class="field-error" id="nameError"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="senderEmail">Email address <span class="req-mark" aria-hidden="true">*</span></label>
+              <input type="email" id="senderEmail" name="email" autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" required aria-describedby="emailError">
+              <span class="field-error" id="emailError"></span>
+            </div>
+
+            <div class="form-field">
+              <label for="senderMessage">Message <span class="req-mark" aria-hidden="true">*</span></label>
+              <textarea id="senderMessage" name="message" required minlength="10" enterkeyhint="done" aria-describedby="messageError"></textarea>
+              <span class="field-error" id="messageError"></span>
+            </div>
+
+            <div class="form-footer">
+              <button type="submit" class="btn btn-primary" id="submitMsgBtn">Send message</button>
+              <span class="form-status" id="formStatus" role="status" aria-live="polite"></span>
+            </div>
+          </form>
         </div>
       </div>
     </section>
@@ -1358,6 +1475,82 @@
         if (!inside) dialog.close();
       });
     }
+
+    // 6. Free contact form submission via FormSubmit AJAX (with native POST fallback)
+    const contactForm = document.getElementById('contactForm');
+    const submitMsgBtn = document.getElementById('submitMsgBtn');
+    const formStatus = document.getElementById('formStatus');
+    const fields = [
+      { el: document.getElementById('senderName'), err: document.getElementById('nameError'), msg: 'Please enter your name (at least 2 characters).' },
+      { el: document.getElementById('senderEmail'), err: document.getElementById('emailError'), msg: 'Please enter a valid email address.' },
+      { el: document.getElementById('senderMessage'), err: document.getElementById('messageError'), msg: 'Please write a message (at least 10 characters).' }
+    ];
+
+    fields.forEach(({ el, err, msg }) => {
+      el.addEventListener('blur', () => {
+        if (el.value.trim() === '' && !el.dataset.touched) return;
+        el.dataset.touched = '1';
+        if (!el.checkValidity()) {
+          el.setAttribute('aria-invalid', 'true');
+          err.textContent = msg;
+        }
+      });
+      el.addEventListener('input', () => {
+        el.dataset.touched = '1';
+        if (el.checkValidity()) {
+          el.removeAttribute('aria-invalid');
+          err.textContent = '';
+        }
+      });
+    });
+
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let firstInvalid = null;
+      fields.forEach(({ el, err, msg }) => {
+        if (!el.checkValidity()) {
+          el.setAttribute('aria-invalid', 'true');
+          err.textContent = msg;
+          if (!firstInvalid) firstInvalid = el;
+        } else {
+          el.removeAttribute('aria-invalid');
+          err.textContent = '';
+        }
+      });
+
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
+      }
+
+      submitMsgBtn.disabled = true;
+      submitMsgBtn.textContent = 'Sending...';
+      formStatus.className = 'form-status';
+      formStatus.textContent = '';
+
+      try {
+        const res = await fetch('https://formsubmit.co/ajax/rahulbomnalli@gmail.com', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(contactForm)
+        });
+        const data = await res.json();
+        if (res.ok && (data.success === 'true' || data.success === true)) {
+          formStatus.className = 'form-status is-success';
+          formStatus.textContent = 'Message sent! Thanks for reaching out.';
+          contactForm.reset();
+          fields.forEach(({ el }) => delete el.dataset.touched);
+        } else {
+          throw new Error(data.message || 'Submission failed');
+        }
+      } catch {
+        formStatus.className = 'form-status is-error';
+        formStatus.textContent = 'Could not send right now. Please email rahulbomnalli@gmail.com directly.';
+      } finally {
+        submitMsgBtn.disabled = false;
+        submitMsgBtn.textContent = 'Send message';
+      }
+    });
   </script>
 </body>
 </html>
