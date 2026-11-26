@@ -14,7 +14,7 @@
       --surface: #ffffff;
       --surface-subtle: #f3f1ec;
       --border: #e5e2dc;
-      --border-strong: #d4d0c8;
+      --border-strong: #cfcbc2;
       --ink: #161615;
       --ink-secondary: #52514c;
       --ink-muted: #76746e;
@@ -22,8 +22,8 @@
       --accent-soft: #eff4ff;
       --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
-      --radius: 10px;
-      --max-inline: 1040px;
+      --radius: 12px;
+      --max-inline: 1060px;
     }
 
     *, *::before, *::after {
@@ -49,7 +49,7 @@
     h1, h2, h3, h4 {
       margin: 0;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.025em;
       line-height: 1.2;
       text-wrap: balance;
       color: var(--ink);
@@ -70,7 +70,7 @@
     button:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
-      border-radius: 4px;
+      border-radius: 6px;
     }
 
     .container {
@@ -78,13 +78,31 @@
       margin-inline: auto;
     }
 
-    /* Header */
+    /* Reading progress bar */
+    .progress-track {
+      position: fixed;
+      inset-block-start: 0;
+      inset-inline: 0;
+      block-size: 2px;
+      z-index: 40;
+      background: transparent;
+      pointer-events: none;
+    }
+
+    .progress-bar {
+      block-size: 100%;
+      inline-size: 0%;
+      background-color: var(--accent);
+      transition: inline-size 80ms linear;
+    }
+
+    /* Sticky Header */
     .site-header {
       position: sticky;
       inset-block-start: 0;
-      z-index: 20;
+      z-index: 30;
       background-color: rgba(250, 249, 246, 0.88);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       border-block-end: 1px solid var(--border);
     }
 
@@ -94,14 +112,30 @@
       align-items: center;
       justify-content: space-between;
       gap: 0.75rem 1.5rem;
-      padding-block: 1rem;
+      padding-block: 0.95rem;
     }
 
     .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
       font-weight: 600;
       font-size: 0.95rem;
       text-decoration: none;
       letter-spacing: -0.01em;
+    }
+
+    .brand-mark {
+      inline-size: 24px;
+      block-size: 24px;
+      border-radius: 6px;
+      background-color: var(--ink);
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 500;
+      display: grid;
+      place-items: center;
     }
 
     .nav-list {
@@ -110,24 +144,44 @@
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: 0.5rem 1.5rem;
+      gap: 0.35rem 1.35rem;
     }
 
     .nav-list a {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: var(--ink-secondary);
       text-decoration: none;
-      transition: color 0.15s ease;
+      padding-block: 0.2rem;
+      border-block-end: 1.5px solid transparent;
+      transition: color 0.15s ease, border-color 0.15s ease;
     }
 
-    .nav-list a:hover {
+    .nav-list a:hover,
+    .nav-list a[aria-current="true"] {
       color: var(--ink);
+    }
+
+    .nav-list a[aria-current="true"] {
+      border-block-end-color: var(--accent);
     }
 
     /* Hero */
     .hero {
-      padding-block: clamp(3.5rem, 2.5rem + 5vw, 6.5rem) clamp(3rem, 2rem + 4vw, 5rem);
+      padding-block: clamp(3.25rem, 2.2rem + 4.5vw, 5.75rem) clamp(2.5rem, 1.8rem + 3vw, 4rem);
       border-block-end: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: end;
+    }
+
+    @media (min-width: 820px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.45fr) minmax(260px, 0.75fr);
+      }
     }
 
     .eyebrow {
@@ -135,9 +189,9 @@
       align-items: center;
       gap: 0.5rem;
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--ink-muted);
-      margin-block-end: 1.25rem;
+      margin-block-end: 1.15rem;
     }
 
     .status-dot {
@@ -149,46 +203,48 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.15rem, 1.5rem + 2.6vw, 3.35rem);
-      letter-spacing: -0.03em;
-      margin-block-end: 1rem;
+      font-size: clamp(2.2rem, 1.5rem + 2.7vw, 3.4rem);
+      letter-spacing: -0.035em;
+      margin-block-end: 0.85rem;
     }
 
     .hero-role {
-      font-size: clamp(1.125rem, 1rem + 0.6vw, 1.35rem);
+      font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
       color: var(--ink-secondary);
       font-weight: 400;
-      max-inline-size: 56ch;
-      margin-block-end: 1.5rem;
+      max-inline-size: 54ch;
+      margin-block-end: 1.25rem;
     }
 
     .hero-summary {
       color: var(--ink-secondary);
-      max-inline-size: 62ch;
-      margin-block-end: 2rem;
+      max-inline-size: 60ch;
+      margin-block-end: 1.85rem;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding-block: 0.6rem;
-      padding-inline: 1.1rem;
+      padding-block: 0.58rem;
+      padding-inline: 1rem;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-family: inherit;
+      font-size: 0.88rem;
       font-weight: 500;
       text-decoration: none;
+      cursor: pointer;
       border: 1px solid var(--border-strong);
       background-color: var(--surface);
       color: var(--ink);
-      transition: border-color 0.15s ease, background-color 0.15s ease;
+      transition: border-color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
     }
 
     .btn:hover {
@@ -207,9 +263,148 @@
       border-color: #2c2c2a;
     }
 
+    /* Quick Stats Card in Hero */
+    .hero-aside {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.35rem;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding-block-end: 0.85rem;
+      border-block-end: 1px solid var(--border);
+    }
+
+    .stat-row:last-child {
+      padding-block-end: 0;
+      border-block-end: 0;
+    }
+
+    .stat-label {
+      font-size: 0.84rem;
+      color: var(--ink-muted);
+    }
+
+    .stat-val {
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--ink);
+      text-align: end;
+    }
+
+    /* Trusted / Company Logos Strip */
+    .logo-strip {
+      margin-block-start: 2.75rem;
+      padding-block-start: 1.75rem;
+      border-block-start: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.25rem 2rem;
+    }
+
+    .logo-strip-label {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .logo-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.5rem 2.25rem;
+    }
+
+    .org-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--ink-secondary);
+      opacity: 0.85;
+      transition: opacity 0.15s ease, color 0.15s ease;
+    }
+
+    .org-logo:hover {
+      opacity: 1;
+      color: var(--ink);
+    }
+
+    /* Lens Filter Bar */
+    .lens-bar {
+      padding-block: 1.1rem;
+      border-block-end: 1px solid var(--border);
+      background-color: var(--surface);
+    }
+
+    .lens-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+    }
+
+    .lens-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--ink-muted);
+    }
+
+    .lens-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+    }
+
+    .lens-pill {
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding-block: 0.4rem;
+      padding-inline: 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--bg);
+      color: var(--ink-secondary);
+      cursor: pointer;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .lens-pill:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .lens-pill[aria-pressed="true"] {
+      background-color: var(--ink);
+      color: #ffffff;
+      border-color: var(--ink);
+    }
+
+    /* Filterable dimming */
+    [data-tags] {
+      transition: opacity 0.22s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .is-dimmed {
+      opacity: 0.36;
+    }
+
     /* Sections */
     .section {
-      padding-block: clamp(3rem, 2rem + 3vw, 4.5rem);
+      padding-block: clamp(2.75rem, 2rem + 3vw, 4.25rem);
       border-block-end: 1px solid var(--border);
     }
 
@@ -219,7 +414,7 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 0.5rem 1rem;
-      margin-block-end: 2.25rem;
+      margin-block-end: 2rem;
     }
 
     .section-label {
@@ -230,19 +425,19 @@
     }
 
     .section-title {
-      font-size: clamp(1.4rem, 1.15rem + 1vw, 1.85rem);
+      font-size: clamp(1.35rem, 1.15rem + 0.9vw, 1.8rem);
     }
 
-    /* Experience list */
+    /* Experience */
     .exp-list {
       display: grid;
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
     .exp-item {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 1rem 2rem;
+      gap: 1.25rem 2rem;
       padding: 1.75rem;
       background-color: var(--surface);
       border: 1px solid var(--border);
@@ -251,14 +446,26 @@
 
     @media (min-width: 720px) {
       .exp-item {
-        grid-template-columns: 220px minmax(0, 1fr);
+        grid-template-columns: 230px minmax(0, 1fr);
       }
     }
 
     .exp-meta {
       display: flex;
       flex-direction: column;
-      gap: 0.25rem;
+      gap: 0.6rem;
+    }
+
+    .company-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-block: 0.35rem;
+      padding-inline: 0.65rem;
+      border-radius: 7px;
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      inline-size: fit-content;
     }
 
     .exp-period {
@@ -268,7 +475,7 @@
     }
 
     .exp-location {
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       color: var(--ink-secondary);
     }
 
@@ -294,32 +501,32 @@
     }
 
     .bullet-list li {
-      font-size: 0.95rem;
+      font-size: 0.94rem;
     }
 
     /* Projects Grid with Subgrid */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr auto auto;
       gap: 1.25rem;
     }
 
     .project-card {
-      grid-row: span 3;
+      grid-row: span 4;
       display: grid;
-      grid-template-rows: auto 1fr auto;
+      grid-template-rows: auto 1fr auto auto;
       grid-template-rows: subgrid;
       gap: 0.85rem;
       padding: 1.5rem;
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      transition: border-color 0.15s ease;
     }
 
     .project-card:hover {
       border-color: var(--border-strong);
+      transform: translateY(-2px);
     }
 
     .project-head h3 {
@@ -329,12 +536,12 @@
 
     .project-sub {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       color: var(--ink-muted);
     }
 
     .project-desc {
-      font-size: 0.94rem;
+      font-size: 0.93rem;
       color: var(--ink-secondary);
     }
 
@@ -347,7 +554,7 @@
 
     .tag {
       font-family: var(--font-mono);
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--ink-secondary);
       background-color: var(--surface-subtle);
       border: 1px solid var(--border);
@@ -356,7 +563,26 @@
       border-radius: 6px;
     }
 
-    /* Two-column split for Skills & Education */
+    .case-btn {
+      justify-self: start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: none;
+      border: 0;
+      padding: 0;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 500;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .case-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* Skills & Education */
     .split-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
@@ -388,14 +614,14 @@
     .edu-list,
     .cert-list {
       display: grid;
-      gap: 1rem;
+      gap: 0.9rem;
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
     .edu-item {
-      padding: 1.15rem 1.25rem;
+      padding: 1.1rem 1.25rem;
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -411,17 +637,17 @@
 
     .edu-degree {
       font-weight: 600;
-      font-size: 0.96rem;
+      font-size: 0.95rem;
     }
 
     .edu-year {
       font-family: var(--font-mono);
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--ink-muted);
     }
 
     .edu-school {
-      font-size: 0.9rem;
+      font-size: 0.89rem;
       color: var(--ink-secondary);
     }
 
@@ -435,20 +661,25 @@
     .cert-item {
       display: flex;
       flex-wrap: wrap;
+      align-items: center;
       justify-content: space-between;
-      gap: 0.25rem 1rem;
-      padding-block: 0.7rem;
-      border-block-end: 1px solid var(--border);
+      gap: 0.5rem 1rem;
+      padding: 0.85rem 1.1rem;
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       font-size: 0.93rem;
     }
 
-    .cert-item:last-child {
-      border-block-end: 0;
+    .cert-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
     }
 
     .cert-org {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       color: var(--ink-muted);
     }
 
@@ -494,12 +725,91 @@
       justify-content: space-between;
       gap: 0.5rem 1.5rem;
     }
+
+    /* Native Modal Dialog */
+    dialog:modal {
+      margin: auto;
+      padding: 0;
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      background-color: var(--surface);
+      color: var(--ink);
+      inline-size: min(100% - 2rem, 600px);
+      max-block-size: 85dvb;
+      overscroll-behavior: contain;
+      box-shadow: 0 24px 60px rgba(22, 22, 21, 0.16);
+    }
+
+    dialog::backdrop {
+      background-color: rgba(22, 22, 21, 0.35);
+      backdrop-filter: blur(3px);
+      overflow: hidden;
+      overscroll-behavior: contain;
+    }
+
+    .modal-body {
+      padding: 1.75rem;
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .modal-top {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-block-end: 1rem;
+      border-block-end: 1px solid var(--border);
+    }
+
+    .modal-close {
+      background-color: var(--surface-subtle);
+      border: 1px solid var(--border);
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 0.35rem 0.65rem;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+
+    .modal-close:hover {
+      border-color: var(--ink);
+    }
+
+    .modal-section-title {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      margin-block-end: 0.35rem;
+    }
+
+    .copy-feedback {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #15803d;
+      min-inline-size: 1px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
   </style>
 </head>
 <body>
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#top" class="brand">Rahul Bomnalli</a>
+      <a href="#top" class="brand">
+        <span class="brand-mark" aria-hidden="true">RB</span>
+        <span>Rahul Bomnalli</span>
+      </a>
       <nav aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="#experience">Experience</a></li>
@@ -515,23 +825,108 @@
   <main id="top">
     <section class="hero">
       <div class="container">
-        <div class="eyebrow">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span>Bengaluru, Karnataka, India</span>
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span>Bengaluru, Karnataka, India · Open to opportunities</span>
+            </div>
+            <h1>Rahul Bomnalli</h1>
+            <p class="hero-role">Python Developer, Test Automation &amp; Cloud-Native Engineer</p>
+            <p class="hero-summary">
+              Electronics and Communication Engineering graduate (2026) with industry experience at Nokia and Samsung Innovation Campus—building reliable Python automation frameworks, Robot Framework test suites, and cloud-native validation workflows across Linux, Docker, Kubernetes, and OpenShift.
+            </p>
+            <div class="hero-actions">
+              <a href="mailto:rahulbomnalli@gmail.com" class="btn btn-primary">Email me</a>
+              <button type="button" class="btn" id="copyEmailBtn" data-email="rahulbomnalli@gmail.com">Copy email</button>
+              <a href="https://github.com/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">GitHub</a>
+              <a href="https://linkedin.com/in/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
+              <span class="copy-feedback" id="copyStatus" role="status" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <aside class="hero-aside" aria-label="Profile highlights">
+            <div class="stat-row">
+              <span class="stat-label">Current / Recent</span>
+              <span class="stat-val">Nokia (Intern)</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Education</span>
+              <span class="stat-val">B.E. ECE · 7.68 CGPA</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Core Stack</span>
+              <span class="stat-val">Python · K8s · Robot</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-label">Certifications</span>
+              <span class="stat-val">Red Hat · AWS · Cisco</span>
+            </div>
+          </aside>
         </div>
-        <h1>Rahul Bomnalli</h1>
-        <p class="hero-role">Python Developer, Test Automation &amp; Cloud-Native Engineer</p>
-        <p class="hero-summary">
-          Electronics and Communication Engineering graduate (2026) with hands-on experience in Python development, Robot Framework automation, and cloud-native telecom software validation across Linux, Docker, Kubernetes, and OpenShift.
-        </p>
-        <div class="hero-actions">
-          <a href="mailto:rahulbomnalli@gmail.com" class="btn btn-primary">rahulbomnalli@gmail.com</a>
-          <a href="https://github.com/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">GitHub</a>
-          <a href="https://linkedin.com/in/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
-          <a href="tel:+919731651176" class="btn">+91 9731651176</a>
+
+        <div class="logo-strip" aria-label="Companies and credential providers">
+          <span class="logo-strip-label">Experience &amp; Credentials</span>
+          <div class="logo-row">
+            <!-- Nokia wordmark -->
+            <span class="org-logo" title="Nokia Solutions and Networks">
+              <svg width="78" height="18" viewBox="0 0 110 24" fill="none" aria-hidden="true">
+                <text x="0" y="19" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="21" letter-spacing="2.5" fill="#005AFF">NOKIA</text>
+              </svg>
+            </span>
+            <!-- Samsung wordmark -->
+            <span class="org-logo" title="Samsung Innovation Campus">
+              <svg width="92" height="18" viewBox="0 0 130 24" fill="none" aria-hidden="true">
+                <text x="0" y="18" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="1.6" fill="#1428A0">SAMSUNG</text>
+              </svg>
+            </span>
+            <!-- Red Hat -->
+            <span class="org-logo" title="Red Hat">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M16.5 11.5c1.2 0 2.8-.25 2.8-1.65 0-.1-.02-.25-.05-.35l-.95-4.1C18 4.4 17.75 4 16 3.1c-1.35-.7-4.3-1.85-5.15-1.85-.8 0-1.05 1.05-2 1.05-.9 0-1.6-.75-2.45-.75-.8 0-1.35.55-1.75 1.7L3.4 6.7c-.05.2-.05.45 0 .65.45 1.65 4.8 4.15 13.1 4.15Z" fill="#EE0000"/>
+                <path d="M19.8 11.9c.3.9.45 1.35.45 1.85 0 2.55-2.9 3.95-6.7 3.95-5.3 0-9.95-3.1-9.95-5.15 0-.4.1-.75.25-1.1-1.9.1-3.35.45-3.35 1.8 0 2.65 6.35 5.95 11.4 5.95 4.75 0 8.6-1.95 8.6-4.75 0-1.25-.4-2.05-.7-2.55Z" fill="#EE0000"/>
+              </svg>
+              <span style="font-size:0.84rem;font-weight:600;">Red Hat</span>
+            </span>
+            <!-- AWS -->
+            <span class="org-logo" title="Amazon Web Services">
+              <svg width="36" height="18" viewBox="0 0 48 24" fill="none" aria-hidden="true">
+                <text x="0" y="15" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="15" fill="#232F3E">aws</text>
+                <path d="M2 18.5c6.5 3.5 16.5 3.8 24.5.8" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/>
+                <path d="M24 17.5l3.5.8-1.4 3.2" stroke="#FF9900" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <!-- Cisco -->
+            <span class="org-logo" title="Cisco Networking Academy">
+              <svg width="24" height="16" viewBox="0 0 32 20" fill="none" aria-hidden="true">
+                <path d="M3 12v-4m4 5V5m4 8V2m4 11V6m4 7V2m4 11V5m4 7v-4" stroke="#049FD9" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <span style="font-size:0.84rem;font-weight:600;letter-spacing:0.04em;">CISCO</span>
+            </span>
+            <!-- GitHub -->
+            <span class="org-logo" title="GitHub">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
+              </svg>
+              <span style="font-size:0.84rem;font-weight:500;">GitHub</span>
+            </span>
+          </div>
         </div>
       </div>
     </section>
+
+    <!-- Interactive Focus Filter -->
+    <div class="lens-bar" role="region" aria-label="Filter portfolio by engineering focus">
+      <div class="container lens-inner">
+        <span class="lens-label">Explore by focus:</span>
+        <div class="lens-pills" id="lensPills">
+          <button type="button" class="lens-pill" data-filter="all" aria-pressed="true">All Work</button>
+          <button type="button" class="lens-pill" data-filter="automation" aria-pressed="false">Test Automation</button>
+          <button type="button" class="lens-pill" data-filter="cloud" aria-pressed="false">Cloud &amp; DevOps</button>
+          <button type="button" class="lens-pill" data-filter="ai" aria-pressed="false">Python &amp; AI / ML</button>
+        </div>
+      </div>
+    </div>
 
     <section id="experience" class="section">
       <div class="container">
@@ -541,8 +936,13 @@
         </div>
 
         <div class="exp-list">
-          <article class="exp-item">
+          <article class="exp-item" data-tags="automation cloud ai">
             <div class="exp-meta">
+              <div class="company-badge">
+                <svg width="62" height="14" viewBox="0 0 110 24" fill="none" aria-hidden="true">
+                  <text x="0" y="19" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="21" letter-spacing="2.5" fill="#005AFF">NOKIA</text>
+                </svg>
+              </div>
               <span class="exp-period">Sep 2025 – Jul 2026</span>
               <span class="exp-location">Onsite · Bengaluru, India</span>
             </div>
@@ -557,8 +957,13 @@
             </div>
           </article>
 
-          <article class="exp-item">
+          <article class="exp-item" data-tags="ai">
             <div class="exp-meta">
+              <div class="company-badge">
+                <svg width="76" height="14" viewBox="0 0 130 24" fill="none" aria-hidden="true">
+                  <text x="0" y="18" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="1.6" fill="#1428A0">SAMSUNG</text>
+                </svg>
+              </div>
               <span class="exp-period">Jun 2023 – Dec 2023</span>
               <span class="exp-location">Onsite · Bengaluru, India</span>
             </div>
@@ -580,41 +985,43 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Selected Projects</h2>
-          <span class="section-label">Engineering</span>
+          <span class="section-label">Click any project for details</span>
         </div>
 
         <div class="projects-grid">
-          <article class="project-card">
+          <article class="project-card" data-tags="ai automation">
             <div class="project-head">
               <h3>AI-Powered Code Review Assistant</h3>
               <div class="project-sub">Python · LLMs · GitHub API</div>
             </div>
             <p class="project-desc">
-              Built a Python-based assistant that integrates with the GitHub API to fetch repositories, pull requests, commits, and changed files, using LLM analysis to flag bugs, security issues, and coding-standard violations.
+              Built a Python-based assistant that integrates with the GitHub API to fetch pull requests and changed files, using LLM analysis to flag bugs, security issues, and coding-standard violations.
             </p>
             <div class="tag-row">
               <span class="tag">Python</span>
               <span class="tag">GitHub API</span>
               <span class="tag">LLMs</span>
             </div>
+            <button type="button" class="case-btn" data-project="code-review">Read case study &rarr;</button>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-tags="ai">
             <div class="project-head">
               <h3>Biomedical Signal Acquisition &amp; Analysis</h3>
               <div class="project-sub">Python · BioAmp · Signal Processing</div>
             </div>
             <p class="project-desc">
-              Developed a hardware-software acquisition pipeline using BioAmp to capture physiological signals, applying digital filtering and feature extraction in Python for real-time monitoring and visualization.
+              Developed a hardware-software acquisition pipeline using BioAmp to capture physiological signals, applying digital filtering and feature extraction in Python for real-time monitoring.
             </p>
             <div class="tag-row">
               <span class="tag">Python</span>
               <span class="tag">BioAmp</span>
               <span class="tag">DSP</span>
             </div>
+            <button type="button" class="case-btn" data-project="biosignal">Read case study &rarr;</button>
           </article>
 
-          <article class="project-card">
+          <article class="project-card" data-tags="ai">
             <div class="project-head">
               <h3>MAANG Stock Analytics &amp; Forecasting</h3>
               <div class="project-sub">Python · Machine Learning · Visualization</div>
@@ -627,6 +1034,7 @@
               <span class="tag">Scikit-Learn</span>
               <span class="tag">Data Analytics</span>
             </div>
+            <button type="button" class="case-btn" data-project="maang">Read case study &rarr;</button>
           </article>
         </div>
       </div>
@@ -640,7 +1048,7 @@
               <h2 class="section-title">Technical Skills</h2>
             </div>
             <div class="skill-groups">
-              <div class="skill-group">
+              <div class="skill-group" data-tags="ai automation">
                 <div class="skill-label">Languages</div>
                 <div class="tag-row">
                   <span class="tag">Python</span>
@@ -649,7 +1057,7 @@
                   <span class="tag">SQL</span>
                 </div>
               </div>
-              <div class="skill-group">
+              <div class="skill-group" data-tags="automation cloud">
                 <div class="skill-label">Automation &amp; Cloud / DevOps</div>
                 <div class="tag-row">
                   <span class="tag">Robot Framework</span>
@@ -659,7 +1067,7 @@
                   <span class="tag">CI/CD</span>
                 </div>
               </div>
-              <div class="skill-group">
+              <div class="skill-group" data-tags="automation cloud">
                 <div class="skill-label">Tools &amp; Platforms</div>
                 <div class="tag-row">
                   <span class="tag">Jenkins</span>
@@ -669,7 +1077,7 @@
                   <span class="tag">Photoshop</span>
                 </div>
               </div>
-              <div class="skill-group">
+              <div class="skill-group" data-tags="cloud">
                 <div class="skill-label">Core Concepts</div>
                 <div class="tag-row">
                   <span class="tag">Computer Networks</span>
@@ -719,27 +1127,58 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Certifications</h2>
-          <span class="section-label">Verified Learning</span>
+          <span class="section-label">Verified Credentials</span>
         </div>
         <ul class="cert-list">
-          <li class="cert-item">
-            <span>Red Hat System Administration I (RH124)</span>
+          <li class="cert-item" data-tags="cloud">
+            <span class="cert-left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M16.5 11.5c1.2 0 2.8-.25 2.8-1.65 0-.1-.02-.25-.05-.35l-.95-4.1C18 4.4 17.75 4 16 3.1c-1.35-.7-4.3-1.85-5.15-1.85-.8 0-1.05 1.05-2 1.05-.9 0-1.6-.75-2.45-.75-.8 0-1.35.55-1.75 1.7L3.4 6.7c-.05.2-.05.45 0 .65.45 1.65 4.8 4.15 13.1 4.15Z" fill="#EE0000"/>
+                <path d="M19.8 11.9c.3.9.45 1.35.45 1.85 0 2.55-2.9 3.95-6.7 3.95-5.3 0-9.95-3.1-9.95-5.15 0-.4.1-.75.25-1.1-1.9.1-3.35.45-3.35 1.8 0 2.65 6.35 5.95 11.4 5.95 4.75 0 8.6-1.95 8.6-4.75 0-1.25-.4-2.05-.7-2.55Z" fill="#EE0000"/>
+              </svg>
+              <span>Red Hat System Administration I (RH124)</span>
+            </span>
             <span class="cert-org">Red Hat</span>
           </li>
-          <li class="cert-item">
-            <span>Network Addressing &amp; Basic Troubleshooting</span>
+          <li class="cert-item" data-tags="cloud">
+            <span class="cert-left">
+              <svg width="20" height="14" viewBox="0 0 32 20" fill="none" aria-hidden="true">
+                <path d="M3 12v-4m4 5V5m4 8V2m4 11V6m4 7V2m4 11V5m4 7v-4" stroke="#049FD9" stroke-width="2.2" stroke-linecap="round"/>
+              </svg>
+              <span>Network Addressing &amp; Basic Troubleshooting</span>
+            </span>
             <span class="cert-org">Cisco Networking Academy</span>
           </li>
-          <li class="cert-item">
-            <span>AWS Cloud Practitioner Essentials</span>
+          <li class="cert-item" data-tags="cloud">
+            <span class="cert-left">
+              <svg width="22" height="16" viewBox="0 0 48 24" fill="none" aria-hidden="true">
+                <text x="0" y="15" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="15" fill="#232F3E">aws</text>
+                <path d="M2 18.5c6.5 3.5 16.5 3.8 24.5.8" stroke="#FF9900" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span>AWS Cloud Practitioner Essentials</span>
+            </span>
             <span class="cert-org">AWS</span>
           </li>
-          <li class="cert-item">
-            <span>Career Essentials in Cybersecurity</span>
+          <li class="cert-item" data-tags="cloud">
+            <span class="cert-left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <rect x="2" y="2" width="9" height="9" fill="#F25022"/>
+                <rect x="13" y="2" width="9" height="9" fill="#7FBA00"/>
+                <rect x="2" y="13" width="9" height="9" fill="#00A4EF"/>
+                <rect x="13" y="13" width="9" height="9" fill="#FFB900"/>
+              </svg>
+              <span>Career Essentials in Cybersecurity</span>
+            </span>
             <span class="cert-org">Microsoft &amp; LinkedIn</span>
           </li>
-          <li class="cert-item">
-            <span>Typing Certification (68 WPM, 95% Accuracy)</span>
+          <li class="cert-item" data-tags="automation">
+            <span class="cert-left">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#52514c" stroke-width="2" aria-hidden="true">
+                <rect x="2" y="5" width="20" height="14" rx="2"/>
+                <path d="M6 10h2m3 0h2m3 0h2M7 14h10" stroke-linecap="round"/>
+              </svg>
+              <span>Typing Certification (68 WPM, 95% Accuracy)</span>
+            </span>
             <span class="cert-org">Typing.com</span>
           </li>
         </ul>
@@ -750,11 +1189,11 @@
       <div class="container">
         <div class="contact-box">
           <div class="contact-copy">
-            <h2>Get in touch</h2>
-            <p>Open to software engineering, Python development, test automation, and cloud-native roles. Feel free to reach out directly.</p>
+            <h2>Let&rsquo;s work together</h2>
+            <p>Open to software engineering, Python development, test automation, and cloud-native roles. Reach out directly anytime.</p>
           </div>
           <div class="contact-links">
-            <a href="mailto:rahulbomnalli@gmail.com" class="btn btn-primary">Email</a>
+            <a href="mailto:rahulbomnalli@gmail.com" class="btn btn-primary">rahulbomnalli@gmail.com</a>
             <a href="tel:+919731651176" class="btn">+91 9731651176</a>
             <a href="https://linkedin.com/in/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
             <a href="https://github.com/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">GitHub</a>
@@ -767,8 +1206,158 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <span>&copy; 2026 Rahul Bomnalli</span>
-      <span>Bengaluru, India</span>
+      <span>Bengaluru, Karnataka, India</span>
     </div>
   </footer>
+
+  <!-- Project Deep-Dive Modal -->
+  <dialog id="projectDialog" closedby="any" aria-labelledby="dialogTitle">
+    <div class="modal-body">
+      <div class="modal-top">
+        <div>
+          <h3 id="dialogTitle">Project Details</h3>
+          <p class="project-sub" id="dialogSub" style="margin-block-start: 0.25rem;"></p>
+        </div>
+        <button type="button" class="modal-close" id="closeDialogBtn">Esc · Close</button>
+      </div>
+      <div>
+        <div class="modal-section-title">Overview</div>
+        <p id="dialogOverview" style="color: var(--ink-secondary); font-size: 0.95rem;"></p>
+      </div>
+      <div>
+        <div class="modal-section-title">Key Implementation</div>
+        <ul class="bullet-list" id="dialogPoints"></ul>
+      </div>
+      <div class="tag-row" id="dialogTags"></div>
+    </div>
+  </dialog>
+
+  <script>
+    // 1. Reading progress bar
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const pct = scrollable > 0 ? Math.min(100, (window.scrollY / scrollable) * 100) : 0;
+      progressBar.style.inlineSize = pct + '%';
+    }, { passive: true });
+
+    // 2. Active nav link tracking
+    const navLinks = [...document.querySelectorAll('.nav-list a')];
+    const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          navLinks.forEach(a => {
+            a.setAttribute('aria-current', a.getAttribute('href') === '#' + entry.target.id ? 'true' : 'false');
+          });
+        }
+      }
+    }, { rootMargin: '-30% 0px -55% 0px' });
+    sections.forEach(s => observer.observe(s));
+
+    // 3. Interactive focus filter
+    const lensBtns = [...document.querySelectorAll('.lens-pill')];
+    const filterItems = [...document.querySelectorAll('[data-tags]')];
+    lensBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        lensBtns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+        filterItems.forEach(item => {
+          const tags = (item.dataset.tags || '').split(' ');
+          item.classList.toggle('is-dimmed', filter !== 'all' && !tags.includes(filter));
+        });
+      });
+    });
+
+    // 4. Copy email with live-region feedback
+    const copyBtn = document.getElementById('copyEmailBtn');
+    const copyStatus = document.getElementById('copyStatus');
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(copyBtn.dataset.email);
+        copyStatus.textContent = 'Copied!';
+        setTimeout(() => { copyStatus.textContent = ''; }, 2200);
+      } catch {
+        copyStatus.textContent = copyBtn.dataset.email;
+      }
+    });
+
+    // 5. Native <dialog> project case studies
+    const projectData = {
+      'code-review': {
+        title: 'AI-Powered Code Review Assistant',
+        sub: 'Python · LLMs · GitHub API',
+        overview: 'An automated pull-request review tool built in Python to catch bugs, security issues, and coding-standard violations before human review.',
+        points: [
+          'Integrated the GitHub API to retrieve repositories, pull requests, commits, and changed files.',
+          'Implemented LLM-based code analysis to inspect diffs and surface actionable review feedback.',
+          'Checked adherence to coding standards and potential edge-case regressions automatically.'
+        ],
+        tags: ['Python', 'GitHub API', 'LLMs', 'Automation']
+      },
+      'biosignal': {
+        title: 'Biomedical Signal Acquisition & Analysis System',
+        sub: 'Python · BioAmp Hardware · DSP',
+        overview: 'A hardware-software acquisition and monitoring system built around BioAmp sensors to capture, filter, and visualize physiological signals in real time.',
+        points: [
+          'Captured raw physiological signals using BioAmp hardware interfaces.',
+          'Processed and visualized live biosignals in Python for real-time monitoring.',
+          'Applied digital signal filtering and feature extraction to improve signal quality and accuracy.'
+        ],
+        tags: ['Python', 'BioAmp', 'Signal Filtering', 'Feature Extraction']
+      },
+      'maang': {
+        title: 'MAANG Stock Analytics & Forecasting',
+        sub: 'Python · Machine Learning · Data Visualization',
+        overview: 'Developed as part of the Samsung Innovation Campus AI/ML program to analyze MAANG stock trends and build predictive models.',
+        points: [
+          'Built end-to-end data preprocessing and visualization workflows in Python.',
+          'Applied supervised machine learning techniques to model historical stock patterns.',
+          'Presented analytical findings as part of the top-35 cohort at Samsung Innovation Campus.'
+        ],
+        tags: ['Python', 'Machine Learning', 'Data Analytics', 'Visualization']
+      }
+    };
+
+    const dialog = document.getElementById('projectDialog');
+    const closeBtn = document.getElementById('closeDialogBtn');
+
+    document.querySelectorAll('.case-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const data = projectData[btn.dataset.project];
+        if (!data) return;
+        document.getElementById('dialogTitle').textContent = data.title;
+        document.getElementById('dialogSub').textContent = data.sub;
+        document.getElementById('dialogOverview').textContent = data.overview;
+        const ul = document.getElementById('dialogPoints');
+        ul.replaceChildren(...data.points.map(text => {
+          const li = document.createElement('li');
+          li.textContent = text;
+          return li;
+        }));
+        const tagRow = document.getElementById('dialogTags');
+        tagRow.replaceChildren(...data.tags.map(t => {
+          const span = document.createElement('span');
+          span.className = 'tag';
+          span.textContent = t;
+          return span;
+        }));
+        dialog.showModal();
+      });
+    });
+
+    closeBtn.addEventListener('click', () => dialog.close());
+
+    // Fallback for browsers without closedby="any" support (e.g., Safari)
+    if (!('closedBy' in HTMLDialogElement.prototype)) {
+      dialog.addEventListener('click', (event) => {
+        if (event.target !== dialog) return;
+        const rect = dialog.getBoundingClientRect();
+        const inside = rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+                       rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
+        if (!inside) dialog.close();
+      });
+    }
+  </script>
 </body>
 </html>
