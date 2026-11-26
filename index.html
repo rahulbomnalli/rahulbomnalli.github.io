@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rahul Bomnalli — Software &amp; Automation Engineer</title>
-  <meta name="description" content="Personal portfolio of Rahul Bomnalli — Python development, test automation, and cloud-native telecom engineering in Bengaluru, India.">
+  <title>Rahul Bomnalli — Software, Python &amp; Automation Engineer</title>
+  <meta name="description" content="Personal portfolio of Rahul Bomnalli — Ex-Nokia &amp; Samsung R&amp;D. Python Developer, AI &amp; Automation, Cloud &amp; DevOps Engineer in Bengaluru, India.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -74,7 +74,7 @@
     }
 
     .container {
-      inline-size: min(100% - 2.5rem, var(--max-inline));
+      inline-size: min(100% - 2rem, var(--max-inline));
       margin-inline: auto;
     }
 
@@ -84,8 +84,7 @@
       inset-block-start: 0;
       inset-inline: 0;
       block-size: 2px;
-      z-index: 40;
-      background: transparent;
+      z-index: 50;
       pointer-events: none;
     }
 
@@ -101,7 +100,7 @@
       position: sticky;
       inset-block-start: 0;
       z-index: 30;
-      background-color: rgba(250, 249, 246, 0.88);
+      background-color: rgba(250, 249, 246, 0.9);
       backdrop-filter: blur(14px);
       border-block-end: 1px solid var(--border);
     }
@@ -111,8 +110,8 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem 1.5rem;
-      padding-block: 0.95rem;
+      gap: 0.65rem 1rem;
+      padding-block: 0.75rem;
     }
 
     .brand {
@@ -126,9 +125,9 @@
     }
 
     .brand-mark {
-      inline-size: 24px;
-      block-size: 24px;
-      border-radius: 6px;
+      inline-size: 26px;
+      block-size: 26px;
+      border-radius: 7px;
       background-color: var(--ink);
       color: #ffffff;
       font-family: var(--font-mono);
@@ -138,20 +137,27 @@
       place-items: center;
     }
 
+    .header-right {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 1rem;
+    }
+
     .nav-list {
       display: flex;
       flex-wrap: wrap;
       list-style: none;
       margin: 0;
       padding: 0;
-      gap: 0.35rem 1.35rem;
+      gap: 0.25rem 1.1rem;
     }
 
     .nav-list a {
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       color: var(--ink-secondary);
       text-decoration: none;
-      padding-block: 0.2rem;
+      padding-block: 0.35rem;
       border-block-end: 1.5px solid transparent;
       transition: color 0.15s ease, border-color 0.15s ease;
     }
@@ -165,16 +171,83 @@
       border-block-end-color: var(--accent);
     }
 
+    /* Ambient Sound Toggle */
+    .sound-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--ink-secondary);
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: 999px;
+      padding-block: 0.38rem;
+      padding-inline: 0.75rem;
+      min-block-size: 36px;
+      cursor: pointer;
+      transition: border-color 0.15s ease, color 0.15s ease, background-color 0.15s ease;
+    }
+
+    .sound-btn:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .sound-btn[aria-pressed="true"] {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .eq-bars {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 2px;
+      block-size: 10px;
+    }
+
+    .eq-bars span {
+      inline-size: 2px;
+      block-size: 4px;
+      background-color: currentColor;
+      border-radius: 2px;
+    }
+
+    .sound-btn[aria-pressed="true"] .eq-bars span {
+      animation: eq 0.9s ease-in-out infinite alternate;
+    }
+    .sound-btn[aria-pressed="true"] .eq-bars span:nth-child(2) { animation-delay: 0.2s; }
+    .sound-btn[aria-pressed="true"] .eq-bars span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes eq {
+      from { block-size: 3px; }
+      to { block-size: 10px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-list {
+        order: 3;
+        inline-size: 100%;
+        justify-content: space-between;
+        padding-block-start: 0.4rem;
+        border-block-start: 1px solid var(--border);
+      }
+      .nav-list a {
+        font-size: 0.82rem;
+      }
+    }
+
     /* Hero */
     .hero {
-      padding-block: clamp(3.25rem, 2.2rem + 4.5vw, 5.75rem) clamp(2.5rem, 1.8rem + 3vw, 4rem);
+      padding-block: clamp(2.5rem, 1.8rem + 4vw, 5.25rem) clamp(2rem, 1.5rem + 2.5vw, 3.75rem);
       border-block-end: 1px solid var(--border);
     }
 
     .hero-grid {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 2.5rem;
+      gap: 2rem;
       align-items: end;
     }
 
@@ -186,40 +259,47 @@
 
     .eyebrow {
       display: inline-flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 0.5rem;
       font-family: var(--font-mono);
       font-size: 0.78rem;
       color: var(--ink-muted);
-      margin-block-end: 1.15rem;
+      margin-block-end: 1rem;
     }
 
     .status-dot {
-      inline-size: 7px;
-      block-size: 7px;
+      inline-size: 8px;
+      block-size: 8px;
       border-radius: 50%;
       background-color: #15803d;
       display: inline-block;
+      animation: pulse-soft 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-soft {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(1.25); }
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 1.5rem + 2.7vw, 3.4rem);
+      font-size: clamp(2.15rem, 1.5rem + 2.6vw, 3.35rem);
       letter-spacing: -0.035em;
-      margin-block-end: 0.85rem;
+      margin-block-end: 0.75rem;
     }
 
     .hero-role {
-      font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+      font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.25rem);
       color: var(--ink-secondary);
       font-weight: 400;
-      max-inline-size: 54ch;
-      margin-block-end: 1.25rem;
+      max-inline-size: 56ch;
+      margin-block-end: 1rem;
     }
 
     .hero-summary {
       color: var(--ink-secondary);
-      max-inline-size: 60ch;
-      margin-block-end: 1.85rem;
+      max-inline-size: 62ch;
+      margin-block-end: 1.65rem;
     }
 
     .hero-actions {
@@ -232,12 +312,14 @@
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.45rem;
-      padding-block: 0.58rem;
-      padding-inline: 1rem;
+      padding-block: 0.65rem;
+      padding-inline: 1.05rem;
+      min-block-size: 44px;
       border-radius: 8px;
       font-family: inherit;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       font-weight: 500;
       text-decoration: none;
       cursor: pointer;
@@ -263,22 +345,22 @@
       border-color: #2c2c2a;
     }
 
-    /* Quick Stats Card in Hero */
+    /* Quick Stats Card */
     .hero-aside {
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 1.35rem;
+      padding: 1.25rem;
       display: grid;
-      gap: 1rem;
+      gap: 0.85rem;
     }
 
     .stat-row {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 1rem;
-      padding-block-end: 0.85rem;
+      gap: 0.75rem;
+      padding-block-end: 0.75rem;
       border-block-end: 1px solid var(--border);
     }
 
@@ -294,22 +376,22 @@
 
     .stat-val {
       font-family: var(--font-mono);
-      font-size: 0.86rem;
+      font-size: 0.84rem;
       font-weight: 500;
       color: var(--ink);
       text-align: end;
     }
 
-    /* Trusted / Company Logos Strip */
+    /* Company Logos Strip */
     .logo-strip {
-      margin-block-start: 2.75rem;
-      padding-block-start: 1.75rem;
+      margin-block-start: 2.25rem;
+      padding-block-start: 1.5rem;
       border-block-start: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 1.25rem 2rem;
+      gap: 1rem 1.75rem;
     }
 
     .logo-strip-label {
@@ -324,26 +406,26 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 1.5rem 2.25rem;
+      gap: 1.15rem 1.85rem;
     }
 
     .org-logo {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       color: var(--ink-secondary);
-      opacity: 0.85;
-      transition: opacity 0.15s ease, color 0.15s ease;
+      opacity: 0.88;
+      transition: opacity 0.15s ease, transform 0.15s ease;
     }
 
     .org-logo:hover {
       opacity: 1;
-      color: var(--ink);
+      transform: translateY(-1px);
     }
 
     /* Lens Filter Bar */
     .lens-bar {
-      padding-block: 1.1rem;
+      padding-block: 0.95rem;
       border-block-end: 1px solid var(--border);
       background-color: var(--surface);
     }
@@ -353,7 +435,7 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem 1.5rem;
+      gap: 0.65rem 1.25rem;
     }
 
     .lens-label {
@@ -372,8 +454,9 @@
       font-family: inherit;
       font-size: 0.84rem;
       font-weight: 500;
-      padding-block: 0.4rem;
+      padding-block: 0.45rem;
       padding-inline: 0.85rem;
+      min-block-size: 38px;
       border-radius: 999px;
       border: 1px solid var(--border-strong);
       background-color: var(--bg);
@@ -393,18 +476,29 @@
       border-color: var(--ink);
     }
 
-    /* Filterable dimming */
+    /* Subtle scroll-reveal + filtering */
     [data-tags] {
-      transition: opacity 0.22s ease, border-color 0.2s ease, transform 0.2s ease;
+      transition: opacity 0.22s ease, border-color 0.2s ease, transform 0.25s ease;
     }
 
     .is-dimmed {
-      opacity: 0.36;
+      opacity: 0.34;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.45s ease-out, transform 0.45s ease-out;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Sections */
     .section {
-      padding-block: clamp(2.75rem, 2rem + 3vw, 4.25rem);
+      padding-block: clamp(2.5rem, 1.8rem + 3vw, 4rem);
       border-block-end: 1px solid var(--border);
     }
 
@@ -414,7 +508,7 @@
       align-items: baseline;
       justify-content: space-between;
       gap: 0.5rem 1rem;
-      margin-block-end: 2rem;
+      margin-block-end: 1.75rem;
     }
 
     .section-label {
@@ -437,8 +531,8 @@
     .exp-item {
       display: grid;
       grid-template-columns: minmax(0, 1fr);
-      gap: 1.25rem 2rem;
-      padding: 1.75rem;
+      gap: 1.15rem 2rem;
+      padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -446,14 +540,14 @@
 
     @media (min-width: 720px) {
       .exp-item {
-        grid-template-columns: 230px minmax(0, 1fr);
+        grid-template-columns: 225px minmax(0, 1fr);
       }
     }
 
     .exp-meta {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.55rem;
     }
 
     .company-badge {
@@ -480,7 +574,7 @@
     }
 
     .exp-content h3 {
-      font-size: 1.125rem;
+      font-size: 1.1rem;
       margin-block-end: 0.2rem;
     }
 
@@ -488,7 +582,7 @@
       font-size: 0.95rem;
       color: var(--accent);
       font-weight: 500;
-      margin-block-end: 0.9rem;
+      margin-block-end: 0.85rem;
     }
 
     .bullet-list {
@@ -507,7 +601,7 @@
     /* Projects Grid with Subgrid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 285px), 1fr));
       grid-template-rows: auto 1fr auto auto;
       gap: 1.25rem;
     }
@@ -518,7 +612,7 @@
       grid-template-rows: auto 1fr auto auto;
       grid-template-rows: subgrid;
       gap: 0.85rem;
-      padding: 1.5rem;
+      padding: 1.4rem;
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -530,7 +624,7 @@
     }
 
     .project-head h3 {
-      font-size: 1.08rem;
+      font-size: 1.06rem;
       margin-block-end: 0.3rem;
     }
 
@@ -570,9 +664,11 @@
       gap: 0.35rem;
       background: none;
       border: 0;
-      padding: 0;
+      padding-block: 0.35rem;
+      padding-inline: 0;
+      min-block-size: 38px;
       font-family: inherit;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       font-weight: 500;
       color: var(--accent);
       cursor: pointer;
@@ -585,13 +681,13 @@
     /* Skills & Education */
     .split-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: 2.25rem;
     }
 
     .skill-groups {
       display: grid;
-      gap: 1.15rem;
+      gap: 1.1rem;
     }
 
     .skill-group {
@@ -614,14 +710,14 @@
     .edu-list,
     .cert-list {
       display: grid;
-      gap: 0.9rem;
+      gap: 0.85rem;
       list-style: none;
       margin: 0;
       padding: 0;
     }
 
     .edu-item {
-      padding: 1.1rem 1.25rem;
+      padding: 1.1rem 1.2rem;
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -663,12 +759,12 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.5rem 1rem;
+      gap: 0.45rem 1rem;
       padding: 0.85rem 1.1rem;
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      font-size: 0.93rem;
+      font-size: 0.92rem;
     }
 
     .cert-left {
@@ -683,9 +779,9 @@
       color: var(--ink-muted);
     }
 
-    /* Contact & Form */
+    /* Contact & Easy Form */
     .contact-box {
-      padding: clamp(1.75rem, 1.25rem + 2vw, 2.75rem);
+      padding: clamp(1.35rem, 1rem + 2vw, 2.5rem);
       background-color: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
@@ -710,7 +806,7 @@
       color: var(--ink-secondary);
       max-inline-size: 46ch;
       font-size: 0.95rem;
-      margin-block-end: 1.35rem;
+      margin-block-end: 1.25rem;
     }
 
     .contact-links {
@@ -721,7 +817,7 @@
 
     .contact-form {
       display: grid;
-      gap: 1.1rem;
+      gap: 1rem;
     }
 
     .form-field {
@@ -757,7 +853,7 @@
     }
 
     .form-field textarea {
-      min-block-size: 120px;
+      min-block-size: 112px;
       resize: vertical;
     }
 
@@ -801,8 +897,9 @@
       color: #b91c1c;
     }
 
+    /* Footer */
     .site-footer {
-      padding-block: 2rem;
+      padding-block: 2rem 5rem;
       color: var(--ink-muted);
       font-size: 0.85rem;
     }
@@ -814,7 +911,7 @@
       gap: 0.5rem 1.5rem;
     }
 
-    /* Native Modal Dialog */
+    /* Native Modal Dialog (Projects) */
     dialog:modal {
       margin: auto;
       padding: 0;
@@ -822,7 +919,7 @@
       border-radius: var(--radius);
       background-color: var(--surface);
       color: var(--ink);
-      inline-size: min(100% - 2rem, 600px);
+      inline-size: min(100% - 1.5rem, 600px);
       max-block-size: 85dvb;
       overscroll-behavior: contain;
       box-shadow: 0 24px 60px rgba(22, 22, 21, 0.16);
@@ -836,9 +933,9 @@
     }
 
     .modal-body {
-      padding: 1.75rem;
+      padding: 1.5rem;
       display: grid;
-      gap: 1.15rem;
+      gap: 1.1rem;
     }
 
     .modal-top {
@@ -846,7 +943,7 @@
       align-items: start;
       justify-content: space-between;
       gap: 1rem;
-      padding-block-end: 1rem;
+      padding-block-end: 0.9rem;
       border-block-end: 1px solid var(--border);
     }
 
@@ -855,7 +952,8 @@
       border: 1px solid var(--border);
       color: var(--ink);
       border-radius: 6px;
-      padding: 0.35rem 0.65rem;
+      padding: 0.4rem 0.7rem;
+      min-block-size: 36px;
       font-family: var(--font-mono);
       font-size: 0.78rem;
       cursor: pointer;
@@ -878,12 +976,174 @@
       font-family: var(--font-mono);
       font-size: 0.78rem;
       color: #15803d;
-      min-inline-size: 1px;
+    }
+
+    /* Floating AI Portfolio Assistant */
+    .ai-fab {
+      position: fixed;
+      inset-block-end: max(1rem, env(safe-area-inset-bottom));
+      inset-inline-end: max(1rem, env(safe-area-inset-right));
+      z-index: 45;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding-block: 0.7rem;
+      padding-inline: 1.1rem;
+      min-block-size: 48px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      background-color: var(--ink);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(22, 22, 21, 0.18);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+
+    .ai-fab:hover {
+      transform: translateY(-2px);
+      background-color: #2b2b29;
+    }
+
+    .ai-panel {
+      position: fixed;
+      inset-block-end: calc(max(1rem, env(safe-area-inset-bottom)) + 3.6rem);
+      inset-inline-end: max(1rem, env(safe-area-inset-right));
+      z-index: 46;
+      inline-size: min(calc(100vw - 2rem), 380px);
+      max-block-size: min(74dvb, 520px);
+      background-color: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+      box-shadow: 0 20px 50px rgba(22, 22, 21, 0.18);
+      display: grid;
+      grid-template-rows: auto 1fr auto auto;
+      overflow: hidden;
+    }
+
+    .ai-panel[hidden] {
+      display: none;
+    }
+
+    .ai-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      padding: 0.9rem 1rem;
+      border-block-end: 1px solid var(--border);
+      background-color: var(--bg);
+    }
+
+    .ai-title {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .ai-sub {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--ink-muted);
+    }
+
+    .ai-messages {
+      padding: 1rem;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .ai-msg {
+      padding: 0.65rem 0.85rem;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      max-inline-size: 90%;
+    }
+
+    .ai-msg.bot {
+      align-self: flex-start;
+      background-color: var(--surface-subtle);
+      color: var(--ink);
+      border: 1px solid var(--border);
+    }
+
+    .ai-msg.user {
+      align-self: flex-end;
+      background-color: var(--ink);
+      color: #ffffff;
+    }
+
+    .ai-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      padding: 0.5rem 1rem 0.65rem;
+      border-block-start: 1px solid var(--border);
+      background-color: var(--bg);
+    }
+
+    .ai-chip {
+      font-family: inherit;
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface);
+      color: var(--ink-secondary);
+      cursor: pointer;
+    }
+
+    .ai-chip:hover {
+      border-color: var(--ink);
+      color: var(--ink);
+    }
+
+    .ai-form {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.75rem 1rem;
+      border-block-start: 1px solid var(--border);
+      background-color: var(--surface);
+    }
+
+    .ai-form input {
+      flex: 1 1 auto;
+      min-inline-size: 0;
+      font: inherit;
+      font-size: max(1rem, 0.9rem);
+      padding: 0.5rem 0.75rem;
+      min-block-size: 42px;
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      background-color: var(--bg);
+      color: var(--ink);
+    }
+
+    .ai-form button {
+      padding: 0.5rem 0.9rem;
+      min-block-size: 42px;
+      border-radius: 8px;
+      border: 1px solid var(--ink);
+      background-color: var(--ink);
+      color: #ffffff;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
     }
 
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { transition: none !important; }
+      *, *::before, *::after {
+        transition: none !important;
+        animation: none !important;
+      }
+      .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -898,15 +1158,21 @@
         <span class="brand-mark" aria-hidden="true">RB</span>
         <span>Rahul Bomnalli</span>
       </a>
-      <nav aria-label="Primary navigation">
-        <ul class="nav-list">
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#skills">Skills &amp; Education</a></li>
-          <li><a href="#certificates">Certificates</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
+      <div class="header-right">
+        <nav aria-label="Primary navigation">
+          <ul class="nav-list">
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#certificates">Certificates</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+        <button type="button" class="sound-btn" id="soundToggle" aria-pressed="false" title="Toggle soft ambient background sound">
+          <span class="eq-bars" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span id="soundLabel">Sound: Off</span>
+        </button>
+      </div>
     </div>
   </header>
 
@@ -917,15 +1183,15 @@
           <div>
             <div class="eyebrow">
               <span class="status-dot" aria-hidden="true"></span>
-              <span>Bengaluru, Karnataka, India · Open to opportunities</span>
+              <span>Greater Bengaluru Area · Open to Work (On-site / Hybrid)</span>
             </div>
             <h1>Rahul Bomnalli</h1>
-            <p class="hero-role">Python Developer, Test Automation &amp; Cloud-Native Engineer</p>
+            <p class="hero-role">Ex-Nokia &amp; Samsung R&amp;D · Python, AI &amp; Cloud-Native Automation Engineer</p>
             <p class="hero-summary">
-              Electronics and Communication Engineering graduate (2026) with industry experience at Nokia and Samsung Innovation Campus—building reliable Python automation frameworks, Robot Framework test suites, and cloud-native validation workflows across Linux, Docker, Kubernetes, and OpenShift.
+              Turning syntax into intelligence. B.E. ECE (BNMIT ’26) graduate with hands-on experience at Nokia Solutions and Networks and Samsung Innovation Campus—building Python automation frameworks, REST APIs, microservices validation, and AI-driven workflows across Linux, Docker, Kubernetes, and OpenShift.
             </p>
             <div class="hero-actions">
-              <a href="mailto:rahulbomnalli@gmail.com" class="btn btn-primary">Email me</a>
+              <a href="#contact" class="btn btn-primary">Send a message</a>
               <button type="button" class="btn" id="copyEmailBtn" data-email="rahulbomnalli@gmail.com">Copy email</button>
               <a href="https://github.com/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">GitHub</a>
               <a href="https://linkedin.com/in/rahulbomnalli" target="_blank" rel="noopener noreferrer" class="btn">LinkedIn</a>
@@ -933,22 +1199,22 @@
             </div>
           </div>
 
-          <aside class="hero-aside" aria-label="Profile highlights">
+          <aside class="hero-aside reveal" aria-label="Profile highlights">
             <div class="stat-row">
-              <span class="stat-label">Current / Recent</span>
-              <span class="stat-val">Nokia (Intern)</span>
+              <span class="stat-label">Experience</span>
+              <span class="stat-val">Nokia · Samsung R&amp;D</span>
             </div>
             <div class="stat-row">
               <span class="stat-label">Education</span>
-              <span class="stat-val">B.E. ECE · 7.68 CGPA</span>
+              <span class="stat-val">B.E. ECE ’26 · 7.68 CGPA</span>
             </div>
             <div class="stat-row">
               <span class="stat-label">Core Stack</span>
               <span class="stat-val">Python · K8s · Robot</span>
             </div>
             <div class="stat-row">
-              <span class="stat-label">Certifications</span>
-              <span class="stat-val">Red Hat · AWS · Cisco</span>
+              <span class="stat-label">Target Roles</span>
+              <span class="stat-val">SDE · Python · AI · QA</span>
             </div>
           </aside>
         </div>
@@ -956,19 +1222,16 @@
         <div class="logo-strip" aria-label="Companies and credential providers">
           <span class="logo-strip-label">Experience &amp; Credentials</span>
           <div class="logo-row">
-            <!-- Nokia wordmark -->
             <span class="org-logo" title="Nokia Solutions and Networks">
               <svg width="78" height="18" viewBox="0 0 110 24" fill="none" aria-hidden="true">
                 <text x="0" y="19" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="21" letter-spacing="2.5" fill="#005AFF">NOKIA</text>
               </svg>
             </span>
-            <!-- Samsung wordmark -->
-            <span class="org-logo" title="Samsung Innovation Campus">
+            <span class="org-logo" title="Samsung R&amp;D Innovation Campus">
               <svg width="92" height="18" viewBox="0 0 130 24" fill="none" aria-hidden="true">
                 <text x="0" y="18" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="18" letter-spacing="1.6" fill="#1428A0">SAMSUNG</text>
               </svg>
             </span>
-            <!-- Red Hat -->
             <span class="org-logo" title="Red Hat">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M16.5 11.5c1.2 0 2.8-.25 2.8-1.65 0-.1-.02-.25-.05-.35l-.95-4.1C18 4.4 17.75 4 16 3.1c-1.35-.7-4.3-1.85-5.15-1.85-.8 0-1.05 1.05-2 1.05-.9 0-1.6-.75-2.45-.75-.8 0-1.35.55-1.75 1.7L3.4 6.7c-.05.2-.05.45 0 .65.45 1.65 4.8 4.15 13.1 4.15Z" fill="#EE0000"/>
@@ -976,7 +1239,6 @@
               </svg>
               <span style="font-size:0.84rem;font-weight:600;">Red Hat</span>
             </span>
-            <!-- AWS -->
             <span class="org-logo" title="Amazon Web Services">
               <svg width="36" height="18" viewBox="0 0 48 24" fill="none" aria-hidden="true">
                 <text x="0" y="15" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="15" fill="#232F3E">aws</text>
@@ -984,14 +1246,12 @@
                 <path d="M24 17.5l3.5.8-1.4 3.2" stroke="#FF9900" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </span>
-            <!-- Cisco -->
             <span class="org-logo" title="Cisco Networking Academy">
               <svg width="24" height="16" viewBox="0 0 32 20" fill="none" aria-hidden="true">
                 <path d="M3 12v-4m4 5V5m4 8V2m4 11V6m4 7V2m4 11V5m4 7v-4" stroke="#049FD9" stroke-width="2.2" stroke-linecap="round"/>
               </svg>
               <span style="font-size:0.84rem;font-weight:600;letter-spacing:0.04em;">CISCO</span>
             </span>
-            <!-- GitHub -->
             <span class="org-logo" title="GitHub">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.33-1.28-1.69-1.28-1.69-1.05-.72.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.21-1.49 3.18-1.18 3.18-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14 0 1.55-.01 2.8-.01 3.18 0 .31.21.67.8.56A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/>
@@ -1003,7 +1263,6 @@
       </div>
     </section>
 
-    <!-- Interactive Focus Filter -->
     <div class="lens-bar" role="region" aria-label="Filter portfolio by engineering focus">
       <div class="container lens-inner">
         <span class="lens-label">Explore by focus:</span>
@@ -1024,7 +1283,7 @@
         </div>
 
         <div class="exp-list">
-          <article class="exp-item" data-tags="automation cloud ai">
+          <article class="exp-item reveal" data-tags="automation cloud ai">
             <div class="exp-meta">
               <div class="company-badge">
                 <svg width="62" height="14" viewBox="0 0 110 24" fill="none" aria-hidden="true">
@@ -1038,14 +1297,14 @@
               <h3>Student Intern</h3>
               <div class="exp-company">Nokia Solutions and Networks India Pvt. Ltd.</div>
               <ul class="bullet-list">
-                <li>Developed and maintained Python and Robot Framework automation scripts for cloud-native telecom software validation.</li>
+                <li>Developed and maintained Python and Robot Framework automation scripts for cloud-native telecom software validation, microservices, and CI/CD pipelines.</li>
                 <li>Automated functional and integration test cases, improving test coverage and reducing manual testing effort.</li>
                 <li>Debugged automation failures by analyzing logs and collaborating with cross-functional teams to resolve software issues.</li>
               </ul>
             </div>
           </article>
 
-          <article class="exp-item" data-tags="ai">
+          <article class="exp-item reveal" data-tags="ai">
             <div class="exp-meta">
               <div class="company-badge">
                 <svg width="76" height="14" viewBox="0 0 130 24" fill="none" aria-hidden="true">
@@ -1057,10 +1316,10 @@
             </div>
             <div class="exp-content">
               <h3>Coding and Programming Intern</h3>
-              <div class="exp-company">Samsung Innovation Campus</div>
+              <div class="exp-company">Samsung Innovation Campus (Samsung R&amp;D Institute India - Bangalore)</div>
               <ul class="bullet-list">
-                <li>Selected among 35 students for Samsung Innovation Campus, an industry-focused coding and AI/ML program.</li>
-                <li>Completed hands-on training in Python, Artificial Intelligence, Machine Learning, and Data Analytics.</li>
+                <li>Selected among 35 students for Samsung Innovation Campus, an industry-focused coding, DSA, and AI/ML program.</li>
+                <li>Completed hands-on training in Python, Artificial Intelligence, Machine Learning, algorithmic computing, and predictive analytics.</li>
                 <li>Developed a MAANG Stock analysis project using machine learning techniques and data visualization.</li>
               </ul>
             </div>
@@ -1073,11 +1332,11 @@
       <div class="container">
         <div class="section-header">
           <h2 class="section-title">Selected Projects</h2>
-          <span class="section-label">Click any project for details</span>
+          <span class="section-label">Tap any project for details</span>
         </div>
 
         <div class="projects-grid">
-          <article class="project-card" data-tags="ai automation">
+          <article class="project-card reveal" data-tags="ai automation">
             <div class="project-head">
               <h3>AI-Powered Code Review Assistant</h3>
               <div class="project-sub">Python · LLMs · GitHub API</div>
@@ -1093,7 +1352,7 @@
             <button type="button" class="case-btn" data-project="code-review">Read case study &rarr;</button>
           </article>
 
-          <article class="project-card" data-tags="ai">
+          <article class="project-card reveal" data-tags="ai">
             <div class="project-head">
               <h3>Biomedical Signal Acquisition &amp; Analysis</h3>
               <div class="project-sub">Python · BioAmp · Signal Processing</div>
@@ -1109,7 +1368,7 @@
             <button type="button" class="case-btn" data-project="biosignal">Read case study &rarr;</button>
           </article>
 
-          <article class="project-card" data-tags="ai">
+          <article class="project-card reveal" data-tags="ai">
             <div class="project-head">
               <h3>MAANG Stock Analytics &amp; Forecasting</h3>
               <div class="project-sub">Python · Machine Learning · Visualization</div>
@@ -1131,36 +1390,41 @@
     <section id="skills" class="section">
       <div class="container">
         <div class="split-grid">
-          <div>
+          <div class="reveal">
             <div class="section-header">
               <h2 class="section-title">Technical Skills</h2>
             </div>
             <div class="skill-groups">
               <div class="skill-group" data-tags="ai automation">
-                <div class="skill-label">Languages</div>
+                <div class="skill-label">Programming &amp; Backend</div>
                 <div class="tag-row">
                   <span class="tag">Python</span>
                   <span class="tag">Java</span>
                   <span class="tag">C</span>
                   <span class="tag">SQL</span>
+                  <span class="tag">REST APIs</span>
+                  <span class="tag">Microservices</span>
                 </div>
               </div>
               <div class="skill-group" data-tags="automation cloud">
-                <div class="skill-label">Automation &amp; Cloud / DevOps</div>
+                <div class="skill-label">Automation, Cloud &amp; DevOps</div>
                 <div class="tag-row">
                   <span class="tag">Robot Framework</span>
                   <span class="tag">Docker</span>
                   <span class="tag">Kubernetes</span>
                   <span class="tag">OpenShift</span>
                   <span class="tag">CI/CD</span>
-                </div>
-              </div>
-              <div class="skill-group" data-tags="automation cloud">
-                <div class="skill-label">Tools &amp; Platforms</div>
-                <div class="tag-row">
                   <span class="tag">Jenkins</span>
                   <span class="tag">Git</span>
                   <span class="tag">Linux</span>
+                </div>
+              </div>
+              <div class="skill-group" data-tags="ai">
+                <div class="skill-label">AI, Data &amp; Tools</div>
+                <div class="tag-row">
+                  <span class="tag">Machine Learning</span>
+                  <span class="tag">Data Analytics</span>
+                  <span class="tag">AI Agents</span>
                   <span class="tag">MS Office Suite</span>
                   <span class="tag">Photoshop</span>
                 </div>
@@ -1176,7 +1440,7 @@
             </div>
           </div>
 
-          <div>
+          <div class="reveal">
             <div class="section-header">
               <h2 class="section-title">Education</h2>
             </div>
@@ -1218,7 +1482,7 @@
           <span class="section-label">Verified Credentials</span>
         </div>
         <ul class="cert-list">
-          <li class="cert-item" data-tags="cloud">
+          <li class="cert-item reveal" data-tags="cloud">
             <span class="cert-left">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <path d="M16.5 11.5c1.2 0 2.8-.25 2.8-1.65 0-.1-.02-.25-.05-.35l-.95-4.1C18 4.4 17.75 4 16 3.1c-1.35-.7-4.3-1.85-5.15-1.85-.8 0-1.05 1.05-2 1.05-.9 0-1.6-.75-2.45-.75-.8 0-1.35.55-1.75 1.7L3.4 6.7c-.05.2-.05.45 0 .65.45 1.65 4.8 4.15 13.1 4.15Z" fill="#EE0000"/>
@@ -1228,7 +1492,7 @@
             </span>
             <span class="cert-org">Red Hat</span>
           </li>
-          <li class="cert-item" data-tags="cloud">
+          <li class="cert-item reveal" data-tags="cloud">
             <span class="cert-left">
               <svg width="20" height="14" viewBox="0 0 32 20" fill="none" aria-hidden="true">
                 <path d="M3 12v-4m4 5V5m4 8V2m4 11V6m4 7V2m4 11V5m4 7v-4" stroke="#049FD9" stroke-width="2.2" stroke-linecap="round"/>
@@ -1237,7 +1501,7 @@
             </span>
             <span class="cert-org">Cisco Networking Academy</span>
           </li>
-          <li class="cert-item" data-tags="cloud">
+          <li class="cert-item reveal" data-tags="cloud">
             <span class="cert-left">
               <svg width="22" height="16" viewBox="0 0 48 24" fill="none" aria-hidden="true">
                 <text x="0" y="15" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="15" fill="#232F3E">aws</text>
@@ -1247,7 +1511,7 @@
             </span>
             <span class="cert-org">AWS</span>
           </li>
-          <li class="cert-item" data-tags="cloud">
+          <li class="cert-item reveal" data-tags="cloud">
             <span class="cert-left">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
                 <rect x="2" y="2" width="9" height="9" fill="#F25022"/>
@@ -1259,7 +1523,7 @@
             </span>
             <span class="cert-org">Microsoft &amp; LinkedIn</span>
           </li>
-          <li class="cert-item" data-tags="automation">
+          <li class="cert-item reveal" data-tags="automation">
             <span class="cert-left">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#52514c" stroke-width="2" aria-hidden="true">
                 <rect x="2" y="5" width="20" height="14" rx="2"/>
@@ -1275,10 +1539,10 @@
 
     <section id="contact" class="section" style="border-block-end: 0;">
       <div class="container">
-        <div class="contact-box">
+        <div class="contact-box reveal">
           <div class="contact-copy">
             <h2 id="contactHeading">Send a message</h2>
-            <p>Have a question, project idea, or role in mind? Send a message directly to my inbox or reach out via the links below.</p>
+            <p>Open to entry-level roles in Software Development, Python, AI/ML Engineering, and Test Automation. Drop a quick note below—it goes straight to my inbox.</p>
             <div class="contact-links">
               <a href="mailto:rahulbomnalli@gmail.com" class="btn">rahulbomnalli@gmail.com</a>
               <a href="tel:+919731651176" class="btn">+91 9731651176</a>
@@ -1293,20 +1557,20 @@
             <input type="text" name="_honey" tabindex="-1" aria-hidden="true" autocomplete="off" style="position:absolute;inset-inline-start:-9999px;">
 
             <div class="form-field">
-              <label for="senderName">Your name <span class="req-mark" aria-hidden="true">*</span></label>
-              <input type="text" id="senderName" name="name" autocomplete="name" enterkeyhint="next" required minlength="2" aria-describedby="nameError">
+              <label for="senderName">Name <span class="req-mark" aria-hidden="true">*</span></label>
+              <input type="text" id="senderName" name="name" autocomplete="name" enterkeyhint="next" placeholder="Your name" required aria-describedby="nameError">
               <span class="field-error" id="nameError"></span>
             </div>
 
             <div class="form-field">
-              <label for="senderEmail">Email address <span class="req-mark" aria-hidden="true">*</span></label>
-              <input type="email" id="senderEmail" name="email" autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" required aria-describedby="emailError">
+              <label for="senderEmail">Email <span class="req-mark" aria-hidden="true">*</span></label>
+              <input type="email" id="senderEmail" name="email" autocomplete="email" autocorrect="off" autocapitalize="none" spellcheck="false" enterkeyhint="next" placeholder="you@example.com" required aria-describedby="emailError">
               <span class="field-error" id="emailError"></span>
             </div>
 
             <div class="form-field">
               <label for="senderMessage">Message <span class="req-mark" aria-hidden="true">*</span></label>
-              <textarea id="senderMessage" name="message" required minlength="10" enterkeyhint="done" aria-describedby="messageError"></textarea>
+              <textarea id="senderMessage" name="message" required enterkeyhint="done" placeholder="Hi Rahul, I'd like to connect regarding..." aria-describedby="messageError"></textarea>
               <span class="field-error" id="messageError"></span>
             </div>
 
@@ -1349,6 +1613,40 @@
     </div>
   </dialog>
 
+  <!-- Floating AI Portfolio Assistant -->
+  <button type="button" class="ai-fab" id="aiToggleBtn" aria-expanded="false" aria-controls="aiPanel">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+      <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z" stroke-linejoin="round"/>
+    </svg>
+    <span>Ask Rahul&rsquo;s AI</span>
+  </button>
+
+  <section class="ai-panel" id="aiPanel" hidden role="dialog" aria-label="Rahul Bomnalli AI Assistant">
+    <div class="ai-header">
+      <div>
+        <div class="ai-title">Rahul&rsquo;s Portfolio AI</div>
+        <div class="ai-sub">Answers using Rahul&rsquo;s verified profile only</div>
+      </div>
+      <button type="button" class="modal-close" id="aiCloseBtn">Close</button>
+    </div>
+
+    <div class="ai-messages" id="aiMessages" aria-live="polite">
+      <div class="ai-msg bot">Hi! Ask me anything about Rahul&rsquo;s experience at Nokia &amp; Samsung, his projects, skills, education, or contact details.</div>
+    </div>
+
+    <div class="ai-chips">
+      <button type="button" class="ai-chip" data-q="What did Rahul do at Nokia?">Nokia experience</button>
+      <button type="button" class="ai-chip" data-q="What are Rahul's top skills?">Tech stack</button>
+      <button type="button" class="ai-chip" data-q="Tell me about his projects.">Projects</button>
+      <button type="button" class="ai-chip" data-q="How can I contact Rahul?">Contact</button>
+    </div>
+
+    <form class="ai-form" id="aiForm">
+      <input type="text" id="aiInput" placeholder="Ask about Rahul..." autocomplete="off" required aria-label="Ask a question about Rahul">
+      <button type="submit" id="aiSendBtn">Ask</button>
+    </form>
+  </section>
+
   <script>
     // 1. Reading progress bar
     const progressBar = document.getElementById('progressBar');
@@ -1358,10 +1656,21 @@
       progressBar.style.inlineSize = pct + '%';
     }, { passive: true });
 
-    // 2. Active nav link tracking
+    // 2. Subtle scroll-reveal + active nav tracking
+    const revealEls = [...document.querySelectorAll('.reveal')];
+    const revealObserver = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      }
+    }, { threshold: 0.08 });
+    revealEls.forEach(el => revealObserver.observe(el));
+
     const navLinks = [...document.querySelectorAll('.nav-list a')];
     const sections = navLinks.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
-    const observer = new IntersectionObserver((entries) => {
+    const navObserver = new IntersectionObserver((entries) => {
       for (const entry of entries) {
         if (entry.isIntersecting) {
           navLinks.forEach(a => {
@@ -1370,7 +1679,7 @@
         }
       }
     }, { rootMargin: '-30% 0px -55% 0px' });
-    sections.forEach(s => observer.observe(s));
+    sections.forEach(s => navObserver.observe(s));
 
     // 3. Interactive focus filter
     const lensBtns = [...document.querySelectorAll('.lens-pill')];
@@ -1386,7 +1695,7 @@
       });
     });
 
-    // 4. Copy email with live-region feedback
+    // 4. Copy email
     const copyBtn = document.getElementById('copyEmailBtn');
     const copyStatus = document.getElementById('copyStatus');
     copyBtn.addEventListener('click', async () => {
@@ -1399,7 +1708,68 @@
       }
     });
 
-    // 5. Native <dialog> project case studies
+    // 5. Soft Ambient Web Audio Synth (very low volume, zero external files)
+    const soundBtn = document.getElementById('soundToggle');
+    const soundLabel = document.getElementById('soundLabel');
+    let audioCtx = null, masterGain = null, chordTimer = null, isPlaying = false;
+    const chords = [
+      [261.63, 329.63, 392.00, 493.88], // Cmaj7
+      [220.00, 261.63, 329.63, 392.00], // Am7
+      [174.61, 220.00, 261.63, 329.63], // Fmaj7
+      [196.00, 246.94, 293.66, 329.63]  // G6
+    ];
+    let chordIdx = 0;
+
+    function playWarmChord() {
+      if (!audioCtx || !isPlaying) return;
+      const now = audioCtx.currentTime;
+      const notes = chords[chordIdx % chords.length];
+      chordIdx++;
+      notes.forEach(freq => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(0.18, now + 1.4);
+        gain.gain.linearRampToValueAtTime(0.0001, now + 4.4);
+        osc.connect(gain);
+        gain.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + 4.5);
+      });
+    }
+
+    soundBtn.addEventListener('click', () => {
+      if (!isPlaying) {
+        if (!audioCtx) {
+          const AudioCtor = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new AudioCtor();
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.value = 620;
+          masterGain = audioCtx.createGain();
+          masterGain.gain.value = 0.03; // ultra-low soothing level
+          filter.connect(masterGain);
+          masterGain.connect(audioCtx.destination);
+          masterGain = filter;
+        }
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        isPlaying = true;
+        soundBtn.setAttribute('aria-pressed', 'true');
+        soundLabel.textContent = 'Sound: On';
+        playWarmChord();
+        chordTimer = setInterval(playWarmChord, 4000);
+      } else {
+        isPlaying = false;
+        clearInterval(chordTimer);
+        soundBtn.setAttribute('aria-pressed', 'false');
+        soundLabel.textContent = 'Sound: Off';
+        if (audioCtx && audioCtx.state === 'running') audioCtx.suspend();
+      }
+    });
+
+    // 6. Native <dialog> project case studies
     const projectData = {
       'code-review': {
         title: 'AI-Powered Code Review Assistant',
@@ -1438,7 +1808,6 @@
 
     const dialog = document.getElementById('projectDialog');
     const closeBtn = document.getElementById('closeDialogBtn');
-
     document.querySelectorAll('.case-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const data = projectData[btn.dataset.project];
@@ -1462,10 +1831,7 @@
         dialog.showModal();
       });
     });
-
     closeBtn.addEventListener('click', () => dialog.close());
-
-    // Fallback for browsers without closedby="any" support (e.g., Safari)
     if (!('closedBy' in HTMLDialogElement.prototype)) {
       dialog.addEventListener('click', (event) => {
         if (event.target !== dialog) return;
@@ -1476,14 +1842,14 @@
       });
     }
 
-    // 6. Free contact form submission via FormSubmit AJAX (with native POST fallback)
+    // 7. Easy Contact Form via FormSubmit JSON API
     const contactForm = document.getElementById('contactForm');
     const submitMsgBtn = document.getElementById('submitMsgBtn');
     const formStatus = document.getElementById('formStatus');
     const fields = [
-      { el: document.getElementById('senderName'), err: document.getElementById('nameError'), msg: 'Please enter your name (at least 2 characters).' },
-      { el: document.getElementById('senderEmail'), err: document.getElementById('emailError'), msg: 'Please enter a valid email address.' },
-      { el: document.getElementById('senderMessage'), err: document.getElementById('messageError'), msg: 'Please write a message (at least 10 characters).' }
+      { el: document.getElementById('senderName'), err: document.getElementById('nameError'), msg: 'Please enter your name.' },
+      { el: document.getElementById('senderEmail'), err: document.getElementById('emailError'), msg: 'Please enter a valid email.' },
+      { el: document.getElementById('senderMessage'), err: document.getElementById('messageError'), msg: 'Please write a short message.' }
     ];
 
     fields.forEach(({ el, err, msg }) => {
@@ -1517,11 +1883,7 @@
           err.textContent = '';
         }
       });
-
-      if (firstInvalid) {
-        firstInvalid.focus();
-        return;
-      }
+      if (firstInvalid) { firstInvalid.focus(); return; }
 
       submitMsgBtn.disabled = true;
       submitMsgBtn.textContent = 'Sending...';
@@ -1529,27 +1891,134 @@
       formStatus.textContent = '';
 
       try {
+        const payload = {
+          name: document.getElementById('senderName').value.trim(),
+          email: document.getElementById('senderEmail').value.trim(),
+          message: document.getElementById('senderMessage').value.trim(),
+          _subject: 'New message from rahulbomnalli.github.io',
+          _template: 'table'
+        };
         const res = await fetch('https://formsubmit.co/ajax/rahulbomnalli@gmail.com', {
           method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(contactForm)
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
         });
         const data = await res.json();
         if (res.ok && (data.success === 'true' || data.success === true)) {
           formStatus.className = 'form-status is-success';
-          formStatus.textContent = 'Message sent! Thanks for reaching out.';
+          formStatus.textContent = 'Sent! Thanks for reaching out.';
           contactForm.reset();
           fields.forEach(({ el }) => delete el.dataset.touched);
         } else {
-          throw new Error(data.message || 'Submission failed');
+          throw new Error(data.message || 'Could not send');
         }
       } catch {
         formStatus.className = 'form-status is-error';
-        formStatus.textContent = 'Could not send right now. Please email rahulbomnalli@gmail.com directly.';
+        formStatus.textContent = 'Failed to send via AJAX. Trying direct submit or email rahulbomnalli@gmail.com.';
       } finally {
         submitMsgBtn.disabled = false;
         submitMsgBtn.textContent = 'Send message';
       }
+    });
+
+    // 8. Free AI Portfolio Assistant (Pollinations.ai + grounded local fallback)
+    const aiToggleBtn = document.getElementById('aiToggleBtn');
+    const aiPanel = document.getElementById('aiPanel');
+    const aiCloseBtn = document.getElementById('aiCloseBtn');
+    const aiMessages = document.getElementById('aiMessages');
+    const aiForm = document.getElementById('aiForm');
+    const aiInput = document.getElementById('aiInput');
+    const aiSendBtn = document.getElementById('aiSendBtn');
+
+    const RAHUL_CONTEXT = `You are Rahul Bomnalli's portfolio assistant. Answer ONLY using the facts below. Be concise (2-4 sentences). If something is not in these facts, say you don't have that detail and suggest emailing rahulbomnalli@gmail.com.
+Facts:
+- Name: Rahul Bomnalli, Greater Bengaluru Area, India. Open to work (On-site / Hybrid) for entry-level roles in AI/ML Engineering, Software Development, Python Development, Backend Engineering, and Test Automation.
+- Contact: Email rahulbomnalli@gmail.com, Phone +91 9731651176, GitHub github.com/rahulbomnalli, LinkedIn linkedin.com/in/rahulbomnalli.
+- Experience 1: Student Intern at Nokia Solutions and Networks India Pvt. Ltd. (Bengaluru, Sep 2025 - Jul 2026). Built Python & Robot Framework automation scripts for cloud-native telecom software validation, microservices, CI/CD, and debugged log failures across teams.
+- Experience 2: Coding and Programming Intern at Samsung Innovation Campus / Samsung R&D Institute India - Bangalore (Jun 2023 - Dec 2023). Selected among 35 students; trained in Python, DSA, AI/ML, and Data Analytics; built a MAANG Stock predictive analytics project.
+- Projects: (1) AI-Powered Code Review Assistant (Python, LLMs, GitHub API); (2) Biomedical Signal Acquisition & Analysis System (Python, BioAmp, DSP filtering & feature extraction); (3) MAANG Stock Analytics & Forecasting (Python, Scikit-Learn, visualization).
+- Skills: Python, Java, C, SQL, REST APIs, Microservices, Robot Framework, Docker, Kubernetes, OpenShift, CI/CD, Jenkins, Git, Linux, Machine Learning, Data Analytics, AI Agents, Computer Networks, Operating Systems, IoT.
+- Education: B.E. Electronics & Communication Engineering at B.N.M Institute of Technology, Bengaluru (VTU, 2026, 7.68 CGPA); PUC at SMT. M B Patil PU College (83.16%, 2022); SSLC at Bethany High School (76.32%, 2020).
+- Certifications: Red Hat System Administration I (RH124), Cisco Network Addressing & Basic Troubleshooting, AWS Cloud Practitioner Essentials, Microsoft & LinkedIn Career Essentials in Cybersecurity, Typing.com (68 WPM, 95% accuracy).`;
+
+    function localFallback(q) {
+      const s = q.toLowerCase();
+      if (/nokia|intern|work|experience/.test(s)) {
+        return 'Rahul interned at Nokia Solutions and Networks in Bengaluru (Sep 2025 – Jul 2026), building Python and Robot Framework automation suites for cloud-native telecom software, microservices, and CI/CD. Earlier, he was selected among 35 students for Samsung Innovation Campus (Jun – Dec 2023) focusing on Python and AI/ML.';
+      }
+      if (/skill|stack|tech|python|cloud|k8s|kubernetes|docker/.test(s)) {
+        return 'Rahul’s core stack includes Python, Java, C, SQL, REST APIs, and Microservices, along with Robot Framework, Docker, Kubernetes, OpenShift, Jenkins, Git, Linux, and AI/ML tools.';
+      }
+      if (/project|code review|bio|maang|stock/.test(s)) {
+        return 'His key projects are an AI-Powered Code Review Assistant (Python, LLMs, GitHub API), a Biomedical Signal Acquisition & Analysis System (Python, BioAmp, DSP), and MAANG Stock Analytics & Forecasting (Python, Scikit-Learn).';
+      }
+      if (/edu|college|bnmit|cgpa|degree|cert/.test(s)) {
+        return 'Rahul is a 2026 B.E. ECE graduate from B.N.M Institute of Technology, Bengaluru (7.68 CGPA). He also holds certifications from Red Hat (RH124), Cisco, AWS, and Microsoft/LinkedIn.';
+      }
+      if (/contact|email|phone|hire|reach/.test(s)) {
+        return 'You can reach Rahul at rahulbomnalli@gmail.com or +91 9731651176, or use the contact form right on this page. He is open to on-site and hybrid roles in Bengaluru.';
+      }
+      return 'Rahul Bomnalli is an Ex-Nokia & Samsung R&D engineer (BNMIT ’26) specializing in Python, Test Automation, Cloud/DevOps (Kubernetes, OpenShift, Docker), and AI/ML. Ask about his experience, projects, skills, or contact info!';
+    }
+
+    function appendMsg(text, who) {
+      const div = document.createElement('div');
+      div.className = 'ai-msg ' + who;
+      div.textContent = text;
+      aiMessages.appendChild(div);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+      return div;
+    }
+
+    async function askAI(question) {
+      appendMsg(question, 'user');
+      const thinking = appendMsg('Thinking...', 'bot');
+      aiSendBtn.disabled = true;
+      try {
+        const controller = new AbortController();
+        const timer = setTimeout(() => controller.abort(), 8000);
+        const res = await fetch('https://text.pollinations.ai/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          signal: controller.signal,
+          body: JSON.stringify({
+            messages: [
+              { role: 'system', content: RAHUL_CONTEXT },
+              { role: 'user', content: question }
+            ],
+            model: 'openai'
+          })
+        });
+        clearTimeout(timer);
+        if (!res.ok) throw new Error('API error');
+        const reply = (await res.text()).trim();
+        thinking.textContent = reply || localFallback(question);
+      } catch {
+        thinking.textContent = localFallback(question);
+      } finally {
+        aiSendBtn.disabled = false;
+        aiMessages.scrollTop = aiMessages.scrollHeight;
+      }
+    }
+
+    function toggleAI(open) {
+      const show = typeof open === 'boolean' ? open : aiPanel.hidden;
+      aiPanel.hidden = !show;
+      aiToggleBtn.setAttribute('aria-expanded', String(show));
+      if (show) aiInput.focus();
+    }
+
+    aiToggleBtn.addEventListener('click', () => toggleAI());
+    aiCloseBtn.addEventListener('click', () => toggleAI(false));
+    document.querySelectorAll('.ai-chip').forEach(chip => {
+      chip.addEventListener('click', () => askAI(chip.dataset.q));
+    });
+    aiForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const q = aiInput.value.trim();
+      if (!q) return;
+      aiInput.value = '';
+      askAI(q);
     });
   </script>
 </body>
